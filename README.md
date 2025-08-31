@@ -27,9 +27,35 @@ pip install qualitative-reasoning
 
 ```python
 import qualitative_reasoning
+import numpy as np
 
-# Example usage
-print("✅ Qualitative Reasoning loaded successfully!")
+# Create qualitative reasoner
+reasoner = qualitative_reasoning.QualitativeReasoner()
+
+# Define qualitative variables
+temperature = qualitative_reasoning.QualitativeQuantity(
+    'temperature', 
+    ['cold', 'warm', 'hot']
+)
+
+pressure = qualitative_reasoning.QualitativeQuantity(
+    'pressure',
+    ['low', 'medium', 'high']
+)
+
+# Create qualitative state
+state = qualitative_reasoning.QualitativeState({
+    'temperature': 'warm',
+    'pressure': 'medium'
+})
+
+# Perform envisionment
+env = qualitative_reasoning.QualitativeEnvisionment(reasoner)
+transitions = env.generate_transitions(state)
+
+print(f"✅ Possible transitions: {len(transitions)}")
+for transition in transitions:
+    print(f"   → {transition}")
 ```
 
 ## 🎓 About the Implementation
