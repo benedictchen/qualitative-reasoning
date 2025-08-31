@@ -13,9 +13,9 @@
 
 # Qualitative Reasoning
 
-🌟 Human-like physical understanding through qualitative relationships and causal reasoning
+🤔 Commonsense physics simulation
 
-**Forbus, K. D., & de Kleer, J. (1993)** - "Building Problem Solvers"
+**Forbus, K. D. (1984) - "Qualitative process theory"**
 
 ## 📦 Installation
 
@@ -23,11 +23,32 @@
 pip install qualitative-reasoning
 ```
 
+## 🚀 Quick Start
+
+```python
+import qualitative_reasoning
+
+# Example usage
+print("✅ Qualitative Reasoning loaded successfully!")
+```
+
 ## 🎓 About the Implementation
 
 Implemented by **Benedict Chen** - bringing foundational AI research to modern Python.
 
 📧 Contact: benedict@benedictchen.com
+
+## 📖 Citation
+
+If you use this implementation in your research, please cite the original paper:
+
+```bibtex
+Forbus, K. D. (1984) - "Qualitative process theory"
+```
+
+## 📜 License
+
+Custom Non-Commercial License with Donation Requirements - See LICENSE file for details.
 
 ---
 
