@@ -76,6 +76,16 @@ import operator
 import re
 warnings.filterwarnings('ignore')
 
+# Import modular components
+try:
+    from .qr_modules.simulation_engine import SimulationEngineMixin
+except ImportError:
+    # Fallback for direct module usage
+    try:
+        from qr_modules.simulation_engine import SimulationEngineMixin
+    except ImportError:
+        from qualitative_reasoning.qr_modules.simulation_engine import SimulationEngineMixin
+
 
 class QualitativeValue(Enum):
     """Qualitative values for continuous quantities"""
@@ -172,7 +182,7 @@ class QualitativeProcess:
     active: bool = False
 
 
-class QualitativeReasoner:
+class QualitativeReasoner(SimulationEngineMixin):
     """
     Qualitative Reasoning System following Forbus's Process Theory
     and de Kleer's Qualitative Physics framework
@@ -626,83 +636,7 @@ class QualitativeReasoner:
                     
                 print(f"   {quantity_name}: direction = {qty.direction.value} (net influence: {net_influence})")
                 
-    def qualitative_simulation_step(self, step_name: str) -> QualitativeState:
-        """
-        Perform one step of qualitative simulation
         
-        This implements the core qualitative reasoning loop:
-        1. Evaluate process conditions
-        2. Update active processes  
-        3. Apply process influences
-        4. Update quantity values
-        5. Check constraints
-        """
-        
-        print(f"\n🔄 Qualitative simulation step: {step_name}")
-        
-        # Step 1 & 2: Update active processes
-        active_processes = self.update_active_processes()
-        
-        # Step 3: Apply influences
-        self.apply_process_influences(active_processes)
-        
-        # Step 4: Update quantity magnitudes based on directions
-        self._update_quantity_magnitudes()
-        
-        # Step 5: Check constraints (simplified)
-        self._check_constraints()
-        
-        # Create state snapshot
-        current_state = QualitativeState(
-            time_point=step_name,
-            quantities={name: qty for name, qty in self.quantities.items()},
-            relationships=self._derive_relationships()
-        )
-        
-        self.state_history.append(current_state)
-        self.current_state = current_state
-        
-        return current_state
-        
-    def _update_quantity_magnitudes(self):
-        """Update quantity magnitudes based on their directions"""
-        
-        for qty_name, qty in self.quantities.items():
-            if qty.direction == QualitativeDirection.INCREASING:
-                qty.magnitude = self._increase_magnitude(qty.magnitude)
-            elif qty.direction == QualitativeDirection.DECREASING:
-                qty.magnitude = self._decrease_magnitude(qty.magnitude)
-            # STEADY direction leaves magnitude unchanged
-            
-    def _increase_magnitude(self, current: QualitativeValue) -> QualitativeValue:
-        """Transition magnitude upward through qualitative scale"""
-        
-        transitions = {
-            QualitativeValue.NEGATIVE_INFINITY: QualitativeValue.NEGATIVE_LARGE,
-            QualitativeValue.NEGATIVE_LARGE: QualitativeValue.NEGATIVE_SMALL,
-            QualitativeValue.NEGATIVE_SMALL: QualitativeValue.ZERO,
-            QualitativeValue.ZERO: QualitativeValue.POSITIVE_SMALL,
-            QualitativeValue.POSITIVE_SMALL: QualitativeValue.POSITIVE_LARGE,
-            QualitativeValue.POSITIVE_LARGE: QualitativeValue.POSITIVE_INFINITY,
-            QualitativeValue.POSITIVE_INFINITY: QualitativeValue.POSITIVE_INFINITY  # Stay at max
-        }
-        
-        return transitions.get(current, current)
-        
-    def _decrease_magnitude(self, current: QualitativeValue) -> QualitativeValue:
-        """Transition magnitude downward through qualitative scale"""
-        
-        transitions = {
-            QualitativeValue.POSITIVE_INFINITY: QualitativeValue.POSITIVE_LARGE,
-            QualitativeValue.POSITIVE_LARGE: QualitativeValue.POSITIVE_SMALL,
-            QualitativeValue.POSITIVE_SMALL: QualitativeValue.ZERO,
-            QualitativeValue.ZERO: QualitativeValue.NEGATIVE_SMALL,
-            QualitativeValue.NEGATIVE_SMALL: QualitativeValue.NEGATIVE_LARGE,
-            QualitativeValue.NEGATIVE_LARGE: QualitativeValue.NEGATIVE_INFINITY,
-            QualitativeValue.NEGATIVE_INFINITY: QualitativeValue.NEGATIVE_INFINITY  # Stay at min
-        }
-        
-        return transitions.get(current, current)
         
     def _check_constraints(self):
         """Check system constraints and report violations"""
@@ -1300,184 +1234,6 @@ class QualitativeReasoner:
         
         return value_map.get(qual_val, 0.0)
         
-    def _derive_relationships(self) -> Dict[str, str]:
-        """Derive higher-level relationships between quantities"""
-        
-        relationships = {}
-        
-        # Enhanced correlation detection with multiple analysis methods
-        qty_names = list(self.quantities.keys())
-        
-        # 1. Current state directional analysis
-        directional_correlations = self._analyze_directional_correlations(qty_names)
-        relationships.update(directional_correlations)
-        
-        # 2. Process-based causal analysis  
-        causal_relationships = self._analyze_causal_relationships(qty_names)
-        relationships.update(causal_relationships)
-        
-        # 3. Temporal correlation analysis if state history exists
-        if hasattr(self, 'state_history') and len(self.state_history) > 1:
-            temporal_correlations = self._analyze_temporal_correlations(qty_names)
-            relationships.update(temporal_correlations)
-            
-        # 4. Domain-specific relationship inference
-        domain_relationships = self._infer_domain_relationships(qty_names)
-        relationships.update(domain_relationships)
-                    
-        return relationships
-        
-    def _analyze_directional_correlations(self, qty_names: List[str]) -> Dict[str, str]:
-        """Analyze correlations based on current direction changes."""
-        correlations = {}
-        
-        for i, qty1_name in enumerate(qty_names):
-            for j, qty2_name in enumerate(qty_names[i+1:], i+1):
-                qty1 = self.quantities[qty1_name]
-                qty2 = self.quantities[qty2_name]
-                
-                # Check if both are increasing/decreasing together
-                if (qty1.direction == QualitativeDirection.INCREASING and 
-                    qty2.direction == QualitativeDirection.INCREASING):
-                    correlations[f"{qty1_name}_correlates_{qty2_name}"] = "positive_correlation"
-                    
-                elif (qty1.direction == QualitativeDirection.DECREASING and 
-                      qty2.direction == QualitativeDirection.DECREASING):
-                    correlations[f"{qty1_name}_correlates_{qty2_name}"] = "positive_correlation"
-                    
-                elif ((qty1.direction == QualitativeDirection.INCREASING and 
-                       qty2.direction == QualitativeDirection.DECREASING) or
-                      (qty1.direction == QualitativeDirection.DECREASING and 
-                       qty2.direction == QualitativeDirection.INCREASING)):
-                    correlations[f"{qty1_name}_anticorrelates_{qty2_name}"] = "negative_correlation"
-                    
-        return correlations
-        
-    def _analyze_causal_relationships(self, qty_names: List[str]) -> Dict[str, str]:
-        """Analyze causal relationships based on process dependencies."""
-        causal_rels = {}
-        
-        # For each quantity, check which processes affect it
-        qty_process_map = {}
-        for qty_name in qty_names:
-            affecting_processes = []
-            for proc_name, process in self.processes.items():
-                # Check if this process has influences on this quantity
-                for influence in process.influences:
-                    if influence.quantity == qty_name:
-                        affecting_processes.append(proc_name)
-            qty_process_map[qty_name] = affecting_processes
-            
-        # Find quantities affected by the same processes (potential causal links)
-        for i, qty1_name in enumerate(qty_names):
-            for j, qty2_name in enumerate(qty_names[i+1:], i+1):
-                processes1 = set(qty_process_map[qty1_name])
-                processes2 = set(qty_process_map[qty2_name])
-                
-                # Common processes suggest potential causal relationship
-                common_processes = processes1.intersection(processes2)
-                if common_processes:
-                    causal_rels[f"{qty1_name}_causally_linked_{qty2_name}"] = f"common_processes_{len(common_processes)}"
-                    
-                # One quantity's processes might affect another (indirect causality)
-                if processes1 and processes2:
-                    # Check if any process affecting qty1 also affects processes affecting qty2
-                    for proc1 in processes1:
-                        for proc2 in processes2:
-                            if proc1 != proc2:
-                                causal_rels[f"{qty1_name}_influences_{qty2_name}"] = f"via_{proc1}_to_{proc2}"
-                                
-        return causal_rels
-        
-    def _analyze_temporal_correlations(self, qty_names: List[str]) -> Dict[str, str]:
-        """Analyze correlations across temporal state history."""
-        temporal_rels = {}
-        
-        # Collect historical direction changes for each quantity
-        qty_history = {}
-        for qty_name in qty_names:
-            directions = []
-            for historical_state in self.state_history:
-                if qty_name in historical_state and hasattr(historical_state[qty_name], 'direction'):
-                    directions.append(historical_state[qty_name].direction)
-            qty_history[qty_name] = directions
-            
-        # Analyze correlation patterns over time
-        for i, qty1_name in enumerate(qty_names):
-            for j, qty2_name in enumerate(qty_names[i+1:], i+1):
-                hist1 = qty_history.get(qty1_name, [])
-                hist2 = qty_history.get(qty2_name, [])
-                
-                if len(hist1) >= 2 and len(hist2) >= 2:
-                    # Count synchronized changes
-                    sync_positive = 0
-                    sync_negative = 0
-                    total_changes = min(len(hist1), len(hist2)) - 1
-                    
-                    for k in range(total_changes):
-                        change1 = self._direction_to_numeric(hist1[k+1]) - self._direction_to_numeric(hist1[k])
-                        change2 = self._direction_to_numeric(hist2[k+1]) - self._direction_to_numeric(hist2[k])
-                        
-                        if change1 * change2 > 0:  # Same direction change
-                            sync_positive += 1
-                        elif change1 * change2 < 0:  # Opposite direction change
-                            sync_negative += 1
-                            
-                    # Determine temporal correlation strength
-                    if total_changes > 0:
-                        pos_ratio = sync_positive / total_changes
-                        neg_ratio = sync_negative / total_changes
-                        
-                        if pos_ratio > 0.6:
-                            temporal_rels[f"{qty1_name}_temporal_pos_corr_{qty2_name}"] = f"strength_{pos_ratio:.2f}"
-                        elif neg_ratio > 0.6:
-                            temporal_rels[f"{qty1_name}_temporal_neg_corr_{qty2_name}"] = f"strength_{neg_ratio:.2f}"
-                            
-        return temporal_rels
-        
-    def _infer_domain_relationships(self, qty_names: List[str]) -> Dict[str, str]:
-        """Infer relationships based on domain-specific knowledge patterns."""
-        domain_rels = {}
-        
-        # Common domain patterns (can be extended with domain-specific knowledge)
-        domain_patterns = {
-            # Physical systems
-            ('temperature', 'pressure'): 'thermal_relationship',
-            ('flow_rate', 'pressure'): 'fluid_dynamics',
-            ('speed', 'kinetic_energy'): 'mechanical_energy',
-            
-            # Economic systems  
-            ('supply', 'price'): 'market_mechanism',
-            ('demand', 'price'): 'market_mechanism',
-            
-            # Biological systems
-            ('population', 'resources'): 'ecological_balance',
-            ('predator', 'prey'): 'predator_prey_cycle',
-            
-            # Chemical systems
-            ('concentration', 'reaction_rate'): 'chemical_kinetics',
-            ('temperature', 'reaction_rate'): 'arrhenius_relationship'
-        }
-        
-        # Check for domain pattern matches
-        for (qty1, qty2), relationship_type in domain_patterns.items():
-            # Check both forward and reverse patterns
-            for qty1_name in qty_names:
-                for qty2_name in qty_names:
-                    if (qty1.lower() in qty1_name.lower() and qty2.lower() in qty2_name.lower()) or \
-                       (qty2.lower() in qty1_name.lower() and qty1.lower() in qty2_name.lower()):
-                        domain_rels[f"{qty1_name}_domain_relation_{qty2_name}"] = relationship_type
-                        
-        return domain_rels
-        
-    def _direction_to_numeric(self, direction: QualitativeDirection) -> int:
-        """Convert qualitative direction to numeric value for calculations."""
-        direction_map = {
-            QualitativeDirection.INCREASING: 1,
-            QualitativeDirection.STABLE: 0,
-            QualitativeDirection.DECREASING: -1
-        }
-        return direction_map.get(direction, 0)
         
     def explain_behavior(self, quantity_name: str) -> List[str]:
         """
@@ -1517,22 +1273,6 @@ class QualitativeReasoner:
         
         return explanations
         
-    def predict_future_states(self, n_steps: int = 5) -> List[QualitativeState]:
-        """
-        Predict future qualitative states
-        
-        Uses current trends and process activations to extrapolate
-        """
-        
-        predictions = []
-        
-        print(f"\n🔮 Predicting {n_steps} future states...")
-        
-        for step in range(1, n_steps + 1):
-            future_state = self.qualitative_simulation_step(f"prediction_{step}")
-            predictions.append(future_state)
-            
-        return predictions
         
     def visualize_system_state(self, include_history: bool = True):
         """Visualize current system state and history"""

@@ -37,6 +37,19 @@ from .qr_modules.core_types import (
     QProcess
 )
 
+# Import main qualitative reasoner from the parent directory
+import sys
+import os
+parent_dir = os.path.dirname(os.path.dirname(__file__))
+sys.path.insert(0, parent_dir)
+# Import the module directly to avoid circular imports
+import importlib.util
+qr_file = os.path.join(parent_dir, 'qualitative_reasoning.py')
+spec = importlib.util.spec_from_file_location('qr_main', qr_file)
+qr_main = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(qr_main)
+QualitativeReasoner = qr_main.QualitativeReasoner
+
 __all__ = [
     # Core types
     "QualitativeValue",
@@ -44,6 +57,9 @@ __all__ = [
     "QualitativeQuantity",
     "QualitativeState",
     "QualitativeProcess",
+    
+    # Main reasoner class
+    "QualitativeReasoner",
     
     # Utility functions
     "compare_qualitative_values",
