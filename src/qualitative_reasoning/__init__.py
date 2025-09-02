@@ -110,3 +110,7 @@ __all__ = [
     "create_production_reasoner",
     "create_demo_reasoner"
 ]
+
+# Backward-compatible aliases for common name variants
+QualitativeReasoningEngine = QualitativeReasoner  # Common alternate name
+QREngine = QualitativeReasoner  # Short alias
