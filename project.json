@@ -1,0 +1,21 @@
+{
+  "name": "qualitative_reasoning",
+  "root": "packages/qualitative_reasoning", 
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["python -m pip install build", "python -m build"],
+        "cwd": "packages/qualitative_reasoning"
+      }
+    },
+    "test": {
+      "executor": "nx:run-commands", 
+      "options": {
+        "commands": ["python -m pytest . -v"],
+        "cwd": "packages/qualitative_reasoning"
+      }
+    }
+  }
+}
