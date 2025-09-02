@@ -45,11 +45,27 @@ from .constraint_engine import (
     ConstraintEvaluationConfig,
     ConstraintEngineMixin
 )
-# from .process_engine import ProcessEngine
-# from .simulation_engine import SimulationEngine  
-# from .analysis_engine import AnalysisEngine
-# from .visualization_engine import VisualizationEngine
-# from .safety_config import SafetyConfigManager
+
+# Analysis engine - intelligence layer for behavior analysis
+from .analysis_engine import (
+    AnalysisEngineMixin,
+    CausalChain,
+    RelationshipAnalysis,
+    BehaviorExplanation
+)
+
+# Visualization engine - presentation layer for results display
+from .visualization_engine import (
+    VisualizationEngineMixin,
+    VisualizationConfig,
+    VisualizationReport
+)
+
+# Process engine - process management and causal reasoning
+from .process_engine import ProcessEngineMixin
+
+# Simulation engine - qualitative simulation and state evolution  
+from .simulation_engine import SimulationEngineMixin
 
 __all__ = [
     # Core types
@@ -78,10 +94,21 @@ __all__ = [
     "ConstraintEvaluationConfig", 
     "ConstraintEngineMixin",
     
+    # Analysis engine components
+    "AnalysisEngineMixin",
+    "CausalChain",
+    "RelationshipAnalysis", 
+    "BehaviorExplanation",
+    
+    # Visualization engine components
+    "VisualizationEngineMixin",
+    "VisualizationConfig",
+    "VisualizationReport",
+    
+    # Engine mixins
+    "ProcessEngineMixin", 
+    "SimulationEngineMixin",
+    
     # Note: Other components will be added as they are implemented
-    # "ProcessEngine",
-    # "SimulationEngine",
-    # "AnalysisEngine", 
-    # "VisualizationEngine",
     # "SafetyConfigManager"
 ]

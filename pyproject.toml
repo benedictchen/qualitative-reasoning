@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "qualitative-reasoning"
-version = "1.1.1"
+version = "1.2.0"
 description = "Qualitative physics simulation and causal reasoning systems"
 readme = "README.md"
 license = {text = "Custom Non-Commercial License with Donation Requirements"}
@@ -30,6 +30,7 @@ test = [
 
 [project.urls]
 Funding = "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=WXQKYYKPHWXHS"
+Sponsor = "https://github.com/sponsors/benedictchen"
 
 [tool.hatch.build.targets.wheel]
 py-modules = ["qualitative_reasoning", "causal_reasoning", "confluence_engine", "constraint_propagation", "envisionment", "physics_engine", "qualitative_variables"]

@@ -79,12 +79,18 @@ warnings.filterwarnings('ignore')
 # Import modular components
 try:
     from .qr_modules.simulation_engine import SimulationEngineMixin
+    from .qr_modules.analysis_engine import AnalysisEngineMixin
+    from .qr_modules.visualization_engine import VisualizationEngineMixin
 except ImportError:
     # Fallback for direct module usage
     try:
         from qr_modules.simulation_engine import SimulationEngineMixin
+        from qr_modules.analysis_engine import AnalysisEngineMixin
+        from qr_modules.visualization_engine import VisualizationEngineMixin
     except ImportError:
         from qualitative_reasoning.qr_modules.simulation_engine import SimulationEngineMixin
+        from qualitative_reasoning.qr_modules.analysis_engine import AnalysisEngineMixin
+        from qualitative_reasoning.qr_modules.visualization_engine import VisualizationEngineMixin
 
 
 class QualitativeValue(Enum):
@@ -182,7 +188,7 @@ class QualitativeProcess:
     active: bool = False
 
 
-class QualitativeReasoner(SimulationEngineMixin):
+class QualitativeReasoner(SimulationEngineMixin, AnalysisEngineMixin, VisualizationEngineMixin):
     """
     Qualitative Reasoning System following Forbus's Process Theory
     and de Kleer's Qualitative Physics framework
@@ -206,6 +212,9 @@ class QualitativeReasoner(SimulationEngineMixin):
             domain_name: Name of the physical domain being modeled
             constraint_config: Configuration for safe constraint evaluation
         """
+        
+        # Initialize parent classes
+        super().__init__()
         
         self.domain_name = domain_name
         self.constraint_config = constraint_config or ConstraintEvaluationConfig()
@@ -1235,73 +1244,6 @@ class QualitativeReasoner(SimulationEngineMixin):
         return value_map.get(qual_val, 0.0)
         
         
-    def explain_behavior(self, quantity_name: str) -> List[str]:
-        """
-        Explain why a quantity behaves as it does
-        
-        Traces causal chain from processes to quantity changes
-        """
-        
-        explanations = []
-        
-        if quantity_name not in self.quantities:
-            return [f"Quantity '{quantity_name}' not found"]
-            
-        qty = self.quantities[quantity_name]
-        
-        # Find processes that influence this quantity
-        influencing_processes = []
-        for process_name, influenced_quantities in self.causal_graph.items():
-            if quantity_name in influenced_quantities:
-                process = self.processes[process_name]
-                if process.active:
-                    influencing_processes.append(process_name)
-                    
-        if not influencing_processes:
-            explanations.append(f"{quantity_name} is not being influenced by any active processes")
-        else:
-            explanations.append(f"{quantity_name} is being influenced by processes: {influencing_processes}")
-            
-            for process_name in influencing_processes:
-                process = self.processes[process_name]
-                explanations.append(f"  Process '{process_name}' is active because:")
-                explanations.extend([f"    - {cond}" for cond in process.preconditions])
-                explanations.extend([f"    - {cond}" for cond in process.quantity_conditions])
-                
-        # Current state
-        explanations.append(f"Current state: {qty.magnitude.value}, trending {qty.direction.value}")
-        
-        return explanations
-        
-        
-    def visualize_system_state(self, include_history: bool = True):
-        """Visualize current system state and history"""
-        
-        print(f"\n📊 System State: {self.domain_name}")
-        print("=" * 50)
-        
-        # Current quantities
-        print("\nQuantities:")
-        for name, qty in self.quantities.items():
-            trend_symbol = {"+" : "↗", "-": "↘", "0": "→", "?": "❓"}[qty.direction.value]
-            print(f"  {name:15} = {qty.magnitude.value:15} {trend_symbol}")
-            
-        # Active processes
-        active_processes = [name for name, process in self.processes.items() if process.active]
-        print(f"\nActive Processes: {active_processes}")
-        
-        # Relationships
-        if self.current_state and self.current_state.relationships:
-            print("\nDerived Relationships:")
-            for rel_name, rel_type in self.current_state.relationships.items():
-                print(f"  {rel_name}: {rel_type}")
-                
-        # History (if requested)
-        if include_history and len(self.state_history) > 1:
-            print(f"\nState History ({len(self.state_history)} states):")
-            for i, state in enumerate(self.state_history[-5:]):  # Show last 5 states
-                print(f"  {state.time_point}: {len(state.quantities)} quantities tracked")
-
 
 # Example usage and demonstration  
 if __name__ == "__main__":
