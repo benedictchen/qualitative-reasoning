@@ -8,7 +8,6 @@ Now imports from specialized modules to meet 800-line standard.
 Author: Benedict Chen (benedict@benedictchen.com)
 Based on: Forbus, K. D. (1984) - "Qualitative Process Theory"
 
-🎯 MODULAR ARCHITECTURE SUCCESS:
 Original: 1,087 lines (36% over limit) → 4 modules averaging 272 lines each
 Total reduction: 32% while preserving 100% functionality
 
@@ -306,7 +305,6 @@ Only internal organization changed.
 if __name__ == "__main__":
     print("⚙️ Qualitative Reasoning - Process Engine Module")
     print("=" * 55)
-    print("📊 MODULARIZATION SUCCESS:")
     print(f"  Original: 1,087 lines (36% over 800-line limit)")
     print(f"  Refactored: 4 modules totaling 740 lines (32% reduction)")
     print(f"  All modules under 800-line limit ✅")

@@ -8,7 +8,6 @@ Now imports from specialized modules to meet 800-line standard.
 Author: Benedict Chen (benedict@benedictchen.com)
 Based on: Forbus & de Kleer (1993) - Building Problem Solvers
 
-🎯 MODULAR ARCHITECTURE SUCCESS:
 Original: 1,105 lines (38% over limit) → 4 modules averaging 276 lines each
 Total reduction: 25% while preserving 100% functionality
 
@@ -205,7 +204,6 @@ Only internal organization changed.
 if __name__ == "__main__":
     print("📊 Qualitative Reasoning - Visualization Engine Module")
     print("=" * 65)
-    print("📊 MODULARIZATION SUCCESS:")
     print(f"  Original: 1,105 lines (38% over 800-line limit)")
     print(f"  Refactored: 4 modules totaling 827 lines (25% reduction)")
     print(f"  All modules under 800-line limit ✅")
