@@ -60,7 +60,7 @@ def test_basic_functionality():
         status = reasoner.get_system_status()
         print(f"✓ System status retrieved (health: {status.get('health', {}).get('status', 'unknown')})")
         
-        print("\n🎉 All basic functionality tests passed!")
+        print("\nAll basic functionality tests passed!")
         
     except Exception as e:
         print(f"❌ Test failed: {e}")

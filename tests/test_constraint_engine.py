@@ -288,7 +288,7 @@ def main():
         test_error_handling()
         test_configuration_options()
         
-        print("\n🎉 Test Suite Completed!")
+        print("\nTest Suite Completed!")
         print("=" * 50)
         print("✅ Constraint engine module successfully extracted and functional")
         print("🔒 Security features are working properly")

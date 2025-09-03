@@ -26,7 +26,6 @@ import json
 from datetime import datetime
 from typing import Dict, List, Any, Optional
 
-# Import the modular implementation
 from .visualization_core import (
     VisualizationCoreMixin,
     VisualizationConfig, 
