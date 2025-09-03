@@ -17,17 +17,25 @@ def _print_attribution():
         print("   benedict@benedictchen.com")
         print("   Support: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=WXQKYYKPHWXHS")
 
-from .qualitative_reasoning import (
-    QualitativeReasoner, 
-    QualitativeValue, 
-    QualitativeDirection,
-    QualitativeQuantity,
-    QualitativeState,
-    QualitativeProcess
-)
-from .envisionment import QualitativeEnvisionment
-from .causal_reasoning import CausalReasoner
-from .physics_engine import QualitativePhysicsEngine
+# Import from src layout structure
+try:
+    from .src.qualitative_reasoning import *
+except ImportError:
+    # Fallback to flat layout files if src import fails
+    try:
+        from .qualitative_reasoning import (
+            QualitativeReasoner, 
+            QualitativeValue, 
+            QualitativeDirection,
+            QualitativeQuantity,
+            QualitativeState,
+            QualitativeProcess
+        )
+        from .envisionment import QualitativeEnvisionment
+        from .causal_reasoning import CausalReasoner
+        from .physics_engine import QualitativePhysicsEngine
+    except ImportError:
+        print("Warning: Could not import Qualitative Reasoning components")
 
 # Show attribution on library import
 _print_attribution()
