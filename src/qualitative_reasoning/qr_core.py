@@ -40,7 +40,7 @@ Educational Use:
     # Pre-configured for learning with detailed explanations
     
 Research Use:
-    reasoner = create_research_reasoner("Advanced System", enable_predictions=True)
+    reasoner = create_research_reasoner("Research System", enable_predictions=True)
     # Full analytical capabilities enabled
 
 Production Use:
@@ -120,7 +120,7 @@ class QualitativeReasoner(
     - Process-based causal reasoning and influence application
     - Safe constraint evaluation using multiple security methods
     - Temporal simulation with state history tracking
-    - Advanced behavioral analysis and explanation generation
+    - Behavioral analysis and explanation generation
     - Rich visualization and multi-format export capabilities
     - Future state prediction and scenario analysis
     
@@ -130,7 +130,7 @@ class QualitativeReasoner(
     - **Secure**: Safe constraint evaluation without code injection risks
     - **Extensible**: Modular design allows easy addition of new capabilities
     - **Educational**: Rich explanations help users understand system behavior
-    - **Research-Ready**: Advanced analysis tools for scientific investigation
+    - **Research-Ready**: Analysis tools for scientific investigation
     """
     
     def __init__(self, 
@@ -458,7 +458,7 @@ class QualitativeReasoner(
         
         if self._verbose:
             reset_type = "structural" if preserve_structure else "complete"
-            print(f"🔄 System reset completed ({reset_type})")
+            print(f"🔄 System reset ({reset_type})")
             
     def get_system_status(self) -> Dict[str, Any]:
         """
@@ -670,13 +670,13 @@ def create_research_reasoner(domain_name: str = "Research System",
         
     🔬 Research Configuration:
     - Maximum analytical capabilities
-    - Advanced prediction algorithms
+    - Prediction algorithms
     - Comprehensive data export
     - Statistical pattern analysis
     - Deep causal chain analysis
     
     Example:
-        >>> reasoner = create_research_reasoner("Advanced Thermodynamics", 
+        >>> reasoner = create_research_reasoner("Thermodynamics Research", 
         ...                                     enable_predictions=True)
         >>> # Full analytical capabilities available
     """
@@ -714,7 +714,7 @@ def create_research_reasoner(domain_name: str = "Research System",
             correlation_threshold=0.5
         )
     
-    print("🔬 Research reasoner created with advanced analytics enabled")
+    print("🔬 Research reasoner created with analytics enabled")
     return reasoner
 
 

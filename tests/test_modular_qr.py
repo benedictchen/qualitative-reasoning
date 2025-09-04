@@ -76,7 +76,7 @@ def test_basic_initialization() -> TestResult:
             ConstraintEvaluationMethod,
             ConstraintEvaluationConfig
         )
-        print("✓ Core types imported successfully")
+        print("✓ Core types imported")
         result.add_pass()
         
         # Test factory functions import
@@ -86,7 +86,7 @@ def test_basic_initialization() -> TestResult:
             create_production_reasoner,
             create_demo_reasoner
         )
-        print("✓ Factory functions imported successfully")
+        print("✓ Factory functions imported")
         result.add_pass()
         
         # Test analysis and visualization imports
