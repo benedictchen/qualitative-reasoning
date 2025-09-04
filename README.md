@@ -20,7 +20,7 @@
 
 🔬 **Forbus's Qualitative Process Theory and de Kleer's Confluence-based Physics for causal reasoning and simulation**
 
-Qualitative Reasoning enables computers to understand and reason about physical systems using qualitative descriptions rather than precise numerical values. This implementation provides research-accurate reproductions of foundational QR algorithms that revolutionized AI's ability to model common-sense physics and causal relationships.
+Qualitative Reasoning enables computers to understand and reason about physical systems using qualitative descriptions rather than precise numerical values. This implementation provides research-accurate reproductions of foundational QR algorithms that transformed AI's ability to model common-sense physics and causal relationships.
 
 **Research Foundation**: Forbus, K. D. (1984) - *"Qualitative Process Theory"* | de Kleer, J. & Brown, J. S. (1984) - *"A Qualitative Physics Based on Confluences"*
 

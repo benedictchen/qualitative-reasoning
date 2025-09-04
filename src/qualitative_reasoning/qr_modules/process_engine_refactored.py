@@ -8,14 +8,13 @@ Now imports from specialized modules to meet 800-line standard.
 Author: Benedict Chen (benedict@benedictchen.com)
 Based on: Forbus, K. D. (1984) - "Qualitative Process Theory"
 
-Original: 1,087 lines (36% over limit) → 4 modules averaging 272 lines each
-Total reduction: 32% while preserving 100% functionality
+Modular implementation of qualitative process theory
 
 Modules:
-- process_management.py (356 lines) - Process creation, configuration, dependencies
-- process_conditions.py (338 lines) - Secure condition evaluation, quantity comparisons
-- process_activation.py (347 lines) - Process activation, influence application  
-- process_causal_reasoning.py (367 lines) - Causal explanation, behavioral analysis
+- process_management.py - Process creation, configuration, dependencies
+- process_conditions.py - Secure condition evaluation, quantity comparisons
+- process_activation.py - Process activation, influence application  
+- process_causal_reasoning.py - Causal explanation, behavioral analysis
 
 This file serves as backward compatibility wrapper while the system migrates
 to the new modular architecture.
@@ -284,9 +283,7 @@ class MyQRSystem(ProcessEngineMixin):
 ```
 
 ✅ BENEFITS:
-- 32% code reduction (1,087 → 740 lines total)
-- All files under 800-line limit  
-- Logical organization by functionality
+- Modular organization by functionality
 - Enhanced security with safe condition evaluation
 - Better causal explanation capabilities
 - Easier testing and maintenance
@@ -305,15 +302,13 @@ Only internal organization changed.
 if __name__ == "__main__":
     print("⚙️ Qualitative Reasoning - Process Engine Module")
     print("=" * 55)
-    print(f"  Original: 1,087 lines (36% over 800-line limit)")
-    print(f"  Refactored: 4 modules totaling 740 lines (32% reduction)")
-    print(f"  All modules under 800-line limit ✅")
+    print("  Modular structure with focused functionality per module")
     print("")
-    print("🎯 NEW MODULAR STRUCTURE:")
-    print(f"  • Process management: 356 lines")  
-    print(f"  • Condition evaluation: 338 lines")
-    print(f"  • Activation & influences: 347 lines")
-    print(f"  • Causal reasoning: 367 lines") 
+    print("🎯 MODULAR STRUCTURE:")
+    print("  • Process management")  
+    print("  • Condition evaluation")
+    print("  • Activation & influences")
+    print("  • Causal reasoning") 
     print("")
     print("✅ 100% backward compatibility maintained!")
     print("🔒 Enhanced security with safe evaluation!")
