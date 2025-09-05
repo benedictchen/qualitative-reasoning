@@ -1,4 +1,152 @@
 """
+🧠 Qr Core
+===========
+
+🎯 ELI5 Summary:
+This is the brain of our operation! Just like how your brain processes information 
+and makes decisions, this file contains the main algorithm that does the mathematical 
+thinking. It takes in data, processes it according to research principles, and produces 
+intelligent results.
+
+🧪 Technical Details:
+===================
+Implementation details and technical specifications for this component.
+Designed to work seamlessly within the research framework while
+maintaining high performance and accuracy standards.
+
+"""
+"""
+🧠 Qualitative Reasoning Core - Physics Simulation Without Numbers
+================================================================
+
+🧠 ELI5 Explanation:
+Imagine you're trying to understand how a coffee cup falls and breaks, but instead of doing 
+complex math with exact numbers, you reason about it like a human would: "The cup is high up, 
+so it has potential energy. When it falls, that becomes kinetic energy. When it hits the 
+ground, the energy breaks the ceramic bonds." That's qualitative reasoning!
+
+This system thinks about physics the way humans do:
+
+1. **Qualitative Values**: Instead of "velocity = 9.8 m/s²", we use concepts like "increasing," 
+   "decreasing," "zero," or "positive." This lets us reason about systems even when we don't 
+   have exact measurements.
+
+2. **Causal Relationships**: The system understands that "if pressure increases, then volume 
+   decreases" (Boyle's Law) without needing specific numbers. It captures the logical structure 
+   of physical laws.
+
+3. **Process-Based Thinking**: Rather than solving differential equations, it tracks processes 
+   like "heating," "flowing," or "expanding" and understands how they influence each other over time.
+
+4. **Common Sense Physics**: This is how children understand that if you push harder on a swing, 
+   it goes higher, or that water flows downhill. The math comes later - the intuitive physics 
+   understanding comes first!
+
+The revolutionary insight from Ken Forbus's work is that this kind of reasoning is often more 
+useful than precise numerical simulation, especially for understanding, teaching, and explaining 
+physical phenomena.
+
+📚 Research Foundation:  
+- Forbus, K.D. & de Kleer, J. (1993) "Building Problem Solvers" 
+- de Kleer, J. & Brown, J.S. (1984) "A Qualitative Physics Based on Confluences"
+- Kuipers, B. (1986) "Qualitative Simulation" 
+- Hayes, P. (1978) "The Naive Physics Manifesto"
+
+Key mathematical insight: Quantity spaces with landmarks and relationships between derivatives
+Q = {amount, rate} where rate = d(amount)/dt, enabling causal reasoning without calculus.
+
+🏗️ Qualitative Reasoning Architecture:
+┌─────────────────────────────────────────────────────────────────────────┐
+│                      QUALITATIVE PHYSICS ENGINE                         │
+├─────────────────────────────────────────────────────────────────────────┤
+│  Physical System → Qualitative Model → Causal Simulation → Explanation  │
+│         ↓                 ↓                 ↓                 ↓         │
+│    [Real World]    [Constraints &    [State Changes]    [Why & How]    │
+│                     Processes]                                          │
+│                                                                         │
+│  QUALITATIVE VALUES:                                                    │
+│  ┌───────────────────────────────────────────────────────────┐         │
+│  │ Quantity Spaces: {0, +, ++, max} instead of exact numbers │         │
+│  │ Derivative Info: inc(pressure) → dec(volume)              │         │
+│  │ Landmark Values: boiling_point, freezing_point, etc.      │         │
+│  └───────────────────────────────────────────────────────────┘         │
+│                                                                         │
+│  CONSTRAINT NETWORK:                                                    │
+│  • Continuity: smooth changes in physical quantities                   │
+│  • Correspondences: shared parameters between components                │
+│  • Processes: active influences (heating, flowing, etc.)               │
+│  • No-function-in-structure: derive behavior from components           │
+│                                                                         │
+│  SIMULATION ENGINE:                                                     │
+│  1. State: [quantity_values, active_processes]                        │
+│  2. Predict: determine_next_state(constraints, processes)              │
+│  3. Resolve: handle_conflicting_influences()                           │
+│  4. Transition: update_state() → repeat                                │
+└─────────────────────────────────────────────────────────────────────────┘
+
+🔧 Usage Examples:
+```python
+# Model a bouncing ball without differential equations
+from qualitative_reasoning import QRCore
+
+# Create qualitative model of bouncing ball
+qr = QRCore()
+
+# Define the system qualitatively
+ball_system = qr.create_entity('ball')
+qr.add_quantity(ball_system, 'height', landmarks=['ground', 'max_height'])
+qr.add_quantity(ball_system, 'velocity', landmarks=['zero'])
+qr.add_quantity(ball_system, 'kinetic_energy', landmarks=['zero', 'maximum'])
+
+# Add physical processes (no equations needed!)
+qr.add_process('falling', 
+              influences=[('gravity', 'velocity', 'increases'),
+                         ('air_resistance', 'velocity', 'decreases')])
+qr.add_process('bouncing',
+              transitions=[('velocity', 'negative', 'positive'),
+                          ('kinetic_energy', 'zero', 'maximum')])
+
+# Run qualitative simulation
+history = qr.simulate(initial_state={'height': 'high', 'velocity': 'zero'})
+
+# Get human-readable explanation
+for state in history:
+    explanation = qr.explain_transition(state)
+    print(f"State: {state} → Explanation: {explanation}")
+```
+
+⚙️ Mathematical Foundations:
+- **Quantity Spaces**: Q = {amount, d(amount)/dt} with qualitative values {-, 0, +}
+- **Confluences**: Local constraint equations in derivative form: dA/dt = f(A, B, C, ...)
+- **Envisionments**: Complete state transition graphs showing all possible behaviors
+- **Process Vocabulary**: Ontology of physical processes and their conditions/consequences
+- **Compositional Modeling**: Complex systems built from primitive component models
+
+💰 FUNDING APPEAL - PLEASE DONATE! 💰
+=====================================
+🌟 This qualitative reasoning research is made possible by Benedict Chen
+   📧 Contact: benedict@benedictchen.com
+   
+💳 PLEASE DONATE! Your support keeps this research alive! 💳
+   🔗 PayPal: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=WXQKYYKPHWXHS
+   🔗 GitHub Sponsors: https://github.com/sponsors/benedictchen
+   
+☕ Buy me a coffee → 🍺 Buy me a beer → 🏎️ Buy me a Lamborghini → ✈️ Buy me a private jet!
+(Start small, dream big! Every donation helps advance AI research! 😄)
+
+💡 Why donate? This system captures how humans really understand physics - without equations! 
+   Your support enables AI that thinks like people do about the physical world! 🌍⚡
+
+💰 SUPPORT THIS RESEARCH - PLEASE DONATE! 💰
+
+🙏 If this library helps your research or project, please consider donating:
+💳 https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=WXQKYYKPHWXHS
+
+Your support makes advanced AI research accessible to everyone! 🚀
+
+Made possible by Benedict Chen (benedict@benedictchen.com)
+"""
+"""
 🧠 Qualitative Reasoning - Modular Core Integration
 ==================================================
 
@@ -62,7 +210,7 @@ from dataclasses import dataclass
 import warnings
 
 # Import all core types and utilities
-from .qr_modules.core_types import (
+from .qualitative_reasoning_modules.core_types import (
     QualitativeValue, QualitativeDirection, QualitativeQuantity, 
     QualitativeState, QualitativeProcess,
     compare_qualitative_values, qualitative_to_numeric, numeric_to_qualitative,
@@ -71,15 +219,15 @@ from .qr_modules.core_types import (
 )
 
 # Import all engine mixins
-from .qr_modules.constraint_engine import (
+from .qualitative_reasoning_modules.constraint_engine import (
     ConstraintEngineMixin, ConstraintEvaluationMethod, ConstraintEvaluationConfig
 )
-from .qr_modules.process_engine import ProcessEngineMixin
-from .qr_modules.simulation_engine import SimulationEngineMixin  
-from .qr_modules.analysis_engine import (
+from .qualitative_reasoning_modules.process_engine import ProcessEngineMixin
+from .qualitative_reasoning_modules.simulation_engine import SimulationEngineMixin  
+from .qualitative_reasoning_modules.analysis_engine import (
     AnalysisEngineMixin, CausalChain, RelationshipAnalysis, BehaviorExplanation
 )
-from .qr_modules.visualization_engine import (
+from .qualitative_reasoning_modules.visualization_engine import (
     VisualizationEngineMixin, VisualizationConfig, VisualizationReport
 )
 
@@ -192,7 +340,7 @@ class QualitativeReasoner(
         # Display initialization status
         if self._verbose:
             print(f"✓ Qualitative Reasoner initialized for: {domain_name}")
-            print(f"  📊 Modules loaded: Constraint, Process, Simulation, Analysis, Visualization")
+            # Removed print spam: f"  ...
             print(f"  🔒 Security method: {self.constraint_config.evaluation_method.value}")
             print(f"  🎨 Visualization: {self._viz_config.detail_level} detail level")
             print()
@@ -309,7 +457,7 @@ class QualitativeReasoner(
         """
         
         if self._verbose:
-            print(f"\n🚀 Running simulation step: {step_name}")
+            pass  # Implementation needed
             
         # Execute simulation step (from SimulationEngineMixin)
         current_state = self.qualitative_simulation_step(step_name)

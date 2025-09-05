@@ -1,4 +1,35 @@
 """
+📋   Init  
+============
+
+🔬 Research Foundation:
+======================
+Based on qualitative reasoning and physics:
+- Forbus, K.D. (1984). "Qualitative Process Theory"
+- de Kleer, J. & Brown, J.S. (1984). "A Qualitative Physics Based on Confluences"
+- Kuipers, B. (1994). "Qualitative Reasoning: Modeling and Simulation with Incomplete Knowledge"
+🎯 ELI5 Summary:
+This file is an important component in our AI research system! Like different organs 
+in your body that work together to keep you healthy, this file has a specific job that 
+helps the overall algorithm work correctly and efficiently.
+
+🧪 Technical Details:
+===================
+Implementation details and technical specifications for this component.
+Designed to work seamlessly within the research framework while
+maintaining high performance and accuracy standards.
+
+📋 Component Integration:
+========================
+    ┌──────────┐
+    │   This   │
+    │Component │ ←→ Other Components
+    └──────────┘
+         ↑↓
+    System Integration
+
+"""
+"""
 Qualitative Reasoning Modules Package
 
 This package contains modularized components of the qualitative reasoning system,
@@ -112,3 +143,15 @@ __all__ = [
     # Note: Other components will be added as they are implemented
     # "SafetyConfigManager"
 ]
+
+print("""
+💰 MODULE SUPPORT - Made possible by Benedict Chen
+   ]8;;mailto:benedict@benedictchen.com\benedict@benedictchen.com]8;;\
+
+💰 PLEASE DONATE! Your support keeps this research alive! 💰
+   🔗 ]8;;https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=WXQKYYKPHWXHS\💳 CLICK HERE TO DONATE VIA PAYPAL]8;;\
+   ❤️ ]8;;https://github.com/sponsors/benedictchen\💖 SPONSOR ON GITHUB]8;;\
+
+   ☕ Buy me a coffee → 🍺 Buy me a beer → 🏎️ Buy me a Lamborghini → ✈️ Buy me a private jet!
+   (Start small, dream big! Every donation helps! 😄)
+""")

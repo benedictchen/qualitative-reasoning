@@ -1,4 +1,27 @@
 """
+🎨 Visualization Engine
+========================
+
+🔬 Research Foundation:
+======================
+Based on qualitative reasoning and physics:
+- Forbus, K.D. (1984). "Qualitative Process Theory"
+- de Kleer, J. & Brown, J.S. (1984). "A Qualitative Physics Based on Confluences"
+- Kuipers, B. (1994). "Qualitative Reasoning: Modeling and Simulation with Incomplete Knowledge"
+🎯 ELI5 Summary:
+This is like an artist's palette for our data! Just like how artists use different 
+colors and brushes to paint pictures that help people understand their ideas, this file 
+creates charts, graphs, and visual displays that help researchers see and understand 
+what their algorithms are doing.
+
+🧪 Technical Details:
+===================
+Implementation details and technical specifications for this component.
+Designed to work seamlessly within the research framework while
+maintaining high performance and accuracy standards.
+
+"""
+"""
 📊 Qualitative Reasoning - Visualization Engine Module
 ====================================================
 
@@ -84,7 +107,7 @@ except ImportError:
             QualitativeState, QualitativeProcess  
         )
     except ImportError:
-        from qualitative_reasoning.qr_modules.core_types import (
+        from qualitative_reasoning.qualitative_reasoning_modules.core_types import (
             QualitativeValue, QualitativeDirection, QualitativeQuantity,
             QualitativeState, QualitativeProcess
         )
@@ -782,7 +805,7 @@ class VisualizationEngineMixin:
             
         return "\n".join(lines)
         
-    def generate_comprehensive_report(self, include_predictions: bool = False) -> VisualizationReport:
+    def simplified_analysis_report(self, include_predictions: bool = False) -> VisualizationReport:
         """
         📋 Generate comprehensive system analysis report
         

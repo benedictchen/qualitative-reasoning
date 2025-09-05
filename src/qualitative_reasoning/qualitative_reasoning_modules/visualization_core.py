@@ -1,4 +1,31 @@
 """
+🎨 Visualization Core
+======================
+
+🎯 ELI5 Summary:
+This is like an artist's palette for our data! Just like how artists use different 
+colors and brushes to paint pictures that help people understand their ideas, this file 
+creates charts, graphs, and visual displays that help researchers see and understand 
+what their algorithms are doing.
+
+🧪 Technical Details:
+===================
+Implementation details and technical specifications for this component.
+Designed to work seamlessly within the research framework while
+maintaining high performance and accuracy standards.
+
+🧠 Core Algorithm Architecture:
+===============================
+    Input → Processing → Output
+      ↓         ↓         ↓
+  [Data]  [Algorithm]  [Result]
+      ↓         ↓         ↓
+     📊        ⚙️        ✨
+     
+Mathematical Foundation → Implementation → Research Application
+
+"""
+"""
 📊 Qualitative Reasoning - Visualization Core Module
 =================================================
 
@@ -15,7 +42,7 @@ and system overview functionality.
 import json
 from datetime import datetime
 from typing import Dict, List, Any, Optional
-from ..qr_modules.core_types import QualitativeState
+from ..qualitative_reasoning_modules.core_types import QualitativeState
 
 class VisualizationConfig:
     """

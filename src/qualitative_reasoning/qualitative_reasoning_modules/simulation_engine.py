@@ -1,16 +1,82 @@
 """
-🚀 Qualitative Reasoning - Simulation Engine Module
-==================================================
+🚀 Qualitative Reasoning - Physics Simulation Engine
+====================================================
 
-This module provides the core qualitative simulation engine for temporal state evolution
-in qualitative physics systems, based on Forbus's Process Theory and de Kleer's 
-Qualitative Physics framework.
+🎯 ELI5 EXPLANATION:
+==================
+Think of qualitative simulation like predicting the weather without exact numbers!
 
-📚 Theoretical Foundation:
-Forbus, K. D. (1984). "Qualitative Process Theory", Artificial Intelligence, 24(1-3)
-Forbus, K. D., & de Kleer, J. (1993). "Building Problem Solvers", MIT Press
-de Kleer, J., & Brown, J. S. (1984). "A Qualitative Physics Based on Confluences"
-Kuipers, B. (1994). "Qualitative Reasoning: Modeling and Simulation with Incomplete Knowledge"
+Instead of saying "Temperature will be 73.2°F tomorrow," you say "It will be warm and getting warmer." 
+Qualitative simulation works exactly this way for any physical system:
+
+1. 🌡️ **Qualitative States**: Instead of exact temperatures, we use "cold," "warm," "hot"
+2. 📈 **Trends**: Instead of exact rates, we track "increasing," "decreasing," "steady"  
+3. ⏰ **Time Intervals**: Instead of exact times, we use "epochs" where behavior stays consistent
+4. 🔄 **Transitions**: We predict when systems change from one state to another
+5. 🧠 **Causal Understanding**: We explain WHY things change, not just HOW MUCH
+
+Perfect for: Early design, safety analysis, teaching physics, understanding complex systems!
+
+🔬 RESEARCH FOUNDATION:
+======================
+Implements foundational qualitative physics frameworks:
+- Forbus (1984): "Qualitative Process Theory" - Process-centered causal reasoning
+- de Kleer & Brown (1984): "A Qualitative Physics Based on Confluences" - Device behavior
+- Kuipers (1994): "Qualitative Reasoning: Modeling and Simulation" - QSIM algorithm
+- Forbus & de Kleer (1993): "Building Problem Solvers" - Comprehensive framework
+
+🧮 MATHEMATICAL PRINCIPLES:
+==========================
+**State Evolution Equation:**
+S(t+1) = Φ(S(t), ActiveProcesses(t))
+
+**Process Activation:**
+Active(P,t) ↔ preconditions(P,t) ∧ quantity_conditions(P,t)
+
+**Quantity Dynamics:**
+∂Q/∂t = Σ I±(Q) from active processes
+
+**Magnitude Transitions:**
+mag(t+1) = transition_function(mag(t), direction(t))
+
+📊 SIMULATION ENGINE ARCHITECTURE:
+==================================
+```
+🚀 QUALITATIVE SIMULATION LOOP 🚀
+
+Physical System State          Simulation Engine              Predicted Evolution
+┌─────────────────────┐       ┌─────────────────────────────┐  ┌─────────────────────┐
+│ Temperature: WARM   │       │                             │  │ t+1: Temperature    │
+│ Trend: INCREASING   │ ────→ │  🔄 PROCESS EVALUATION      │  │      HOT ↑          │
+│ Pressure: LOW       │       │  Active: [Heating]          │  │      Pressure       │
+│ Trend: STEADY       │       │                             │  │      LOW →          │
+└─────────────────────┘       │  📊 INFLUENCE APPLICATION   │  └─────────────────────┘
+                              │  T: +heating → INCREASING   │           ▼
+┌─────────────────────┐       │  P: no change → STEADY     │  ┌─────────────────────┐
+│ Active Processes:   │       │                             │  │ t+2: Temperature    │
+│ • Heating ON        │ ────→ │  🎯 MAGNITUDE EVOLUTION     │  │      HOT ↑          │
+│ • Cooling OFF       │       │  WARM + INCREASING → HOT   │  │      Pressure       │
+│ • Fan OFF           │       │  LOW + STEADY → LOW        │  │      MEDIUM ↑       │
+└─────────────────────┘       │                             │  └─────────────────────┘
+                              │  ✅ CONSTRAINT CHECKING     │           ▼
+┌─────────────────────┐       │  Check: P ∝ T (Gay-Lussac) │  ┌─────────────────────┐
+│ Physical Laws:      │       │  Result: P should rise!    │  │ Explanation:        │
+│ • Gay-Lussac Law    │ ────→ │                             │  │ "Heating caused     │
+│ • Heat Transfer     │       │  🧠 CAUSAL EXPLANATION     │  │  temperature rise,  │
+│ • Conservation      │       │  Why: Heating process       │  │  which triggered    │
+└─────────────────────┘       │       active               │  │  pressure increase  │
+                              └─────────────────────────────┘  │  via Gay-Lussac"   │
+                                                               └─────────────────────┘
+```
+
+💰 SUPPORT THIS RESEARCH:
+=========================
+🙏 If this library helps your research:
+💳 PayPal: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=WXQKYYKPHWXHS
+💖 GitHub Sponsors: https://github.com/sponsors/benedictchen
+
+Author: Benedict Chen (benedict@benedictchen.com)
+Based on: Forbus, de Kleer, and Kuipers' foundational qualitative physics research
 
 🧠 Qualitative Simulation Theory:
 The simulation engine implements the heart of qualitative physics - how physical systems

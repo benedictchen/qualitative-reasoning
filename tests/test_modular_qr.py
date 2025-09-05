@@ -1547,7 +1547,7 @@ def generate_test_summary(results: List[TestResult]) -> str:
 def main():
     """Main test execution function"""
     
-    print("🚀 Starting Comprehensive Modular QR System Test...")
+    # print("🚀 Starting Comprehensive Modular QR System Test...")
     print()
     
     try:

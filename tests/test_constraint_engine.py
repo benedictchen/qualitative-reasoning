@@ -290,7 +290,6 @@ def main():
         
         print("\nTest Suite Completed!")
         print("=" * 50)
-        print("✅ Constraint engine module successfully extracted and functional")
         print("🔒 Security features are working properly")
         print("🛠️ Error handling is robust")
         print("⚙️ Configuration options are flexible")
